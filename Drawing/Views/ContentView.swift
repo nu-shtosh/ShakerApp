@@ -25,9 +25,12 @@ struct ContentView: View {
 
             VStack {
                 VStack {
+
                     Text("1. Choose colors and add them in the shaker")
+                        .font(.system(size: 14))
                         .foregroundColor(.white)
                         .bold()
+
                     HStack {
                         ZStack {
                             Rectangle()
@@ -46,9 +49,10 @@ struct ContentView: View {
                                 y: addColorInShaker ? 0 : UIScreen.main.bounds.height - 570
                             )
                             .animation(
-                                Animation.easeIn(duration: 0.6).repeatCount(0, autoreverses: true),
+                                Animation.easeIn(duration: 0.5).repeatCount(0, autoreverses: true),
                                 value: addColorInShaker)
                         }
+
                         VStack {
                             SliderView(value: $redSlider, color: .red)
                             SliderView(value: $greenSlider, color: .green)
@@ -72,10 +76,8 @@ struct ContentView: View {
                 .background(Color(.white).opacity(0.2))
                 .cornerRadius(10)
 
-
-                Spacer()
-
                 Text("2. Shake it")
+                    .font(.system(size: 14))
                     .foregroundColor(.white)
                     .bold()
 
@@ -93,7 +95,6 @@ struct ContentView: View {
                             Animation.easeOut(duration: 2).repeatCount(0, autoreverses: false),
                             value: shake
                         )
-
                         .offset(x: clearGlass ? 0  : UIScreen.main.bounds.width - 200)
                         .rotationEffect(.degrees(clearGlass ? 0 : 180))
                         .animation(
@@ -111,11 +112,14 @@ struct ContentView: View {
                             .frame(width: 140, height: 140)
                             .padding(.bottom, 80)
                     }
-                    .padding(.trailing, 40)
+//                    .padding(.trailing, 30)
                     .offset(y: shake ? 50 : 0)
                     .rotationEffect(.degrees(shake ? -45 : 0))
                     .animation(Animation.easeInOut(duration: 0.1).repeatCount(10, autoreverses: true), value: shake)
+
+                    Spacer()
                 }
+
 
                 Text("Colors in shaker: \(addedColors.count)")
                     .foregroundColor(.cyan)
@@ -134,6 +138,7 @@ struct ContentView: View {
                 .cornerRadius(12)
 
                 Text("3. Clear it and repeat")
+                    .font(.system(size: 14))
                     .foregroundColor(.white)
                     .bold()
 
